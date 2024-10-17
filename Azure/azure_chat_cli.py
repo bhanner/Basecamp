@@ -49,11 +49,12 @@ def main():
         if prompt == 'done':
             break
 
-        # if prompt.startswith("upload "):
-        #     file_name = prompt[7:].rstrip().lstrip()
-        #     the_file = open(file_name, mode="rb")
-        #     loaded_file = client.files.create(purpose="assistants",file=the_file)
-
+        if prompt.startswith("upload "):
+            file_name = prompt[7:].rstrip().lstrip()
+            with open(file_name, mode="rb") as the_file:
+                loaded_file = client.files.create(purpose="assistants", file=the_file)
+                print(f"File {file_name} uploaded successfully.")
+                
         else :
             messages.append({"role": "user","content":prompt})
 
