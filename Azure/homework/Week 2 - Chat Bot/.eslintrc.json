@@ -1,0 +1,6 @@
+{
+  "extends": ["react-app"],
+  "rules": {
+    // Add any custom linting rules here
+  }
+}

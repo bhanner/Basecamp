@@ -1,0 +1,19 @@
+{
+    "github.copilot.chat.experimental.codeGeneration.instructions": [
+            {
+                "file": "docs/code-skills/skills-api.md"
+            },
+            {
+                "file": "docs/code-skills/skills-unit-tests.md"
+            },
+            {
+                "file": "docs/code-skills/skills-integration-tests.md"
+            },
+            {
+                "file": "docs/prompts/code-review.md"
+            },
+            {
+                "file": "docs/coding-conventions.md"
+            }
+        ]
+}

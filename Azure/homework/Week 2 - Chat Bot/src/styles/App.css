@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.App-header {
+  top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.Chat-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 50%;
+}
+
+.name-prompt {
+  transition: opacity 1.5s ease-out;
+}
+
+.name-prompt.fade-out {
+  opacity: 0;
+}

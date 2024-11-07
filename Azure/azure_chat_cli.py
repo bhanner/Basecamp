@@ -1,13 +1,12 @@
 import os
-from pathlib import Path
 import sys
 from openai import AzureOpenAI
 
 def main():
     # Initialize OpenAI client
     client = AzureOpenAI(
-        azure_endpoint = os.getenv("AZURE_DC_OPENAI_ENDPOINT"), 
-        api_key=os.getenv("AZURE_DC_OPENAI_API_KEY"),  
+    azure_endpoint = os.getenv("AZURE_BOSTON_OPENAI_ENDPOINT"), 
+    api_key=os.getenv("AZURE_BOSTON_OPENAI_API_KEY"),  
         api_version="2024-02-01"
     )
 
@@ -49,29 +48,22 @@ def main():
         if prompt == 'done':
             break
 
-        if prompt.startswith("upload "):
-            file_name = prompt[7:].rstrip().lstrip()
-            with open(file_name, mode="rb") as the_file:
-                loaded_file = client.files.create(purpose="assistants", file=the_file)
-                print(f"File {file_name} uploaded successfully.")
-                
-        else :
-            messages.append({"role": "user","content":prompt})
+        messages.append({"role": "user","content":prompt})
 
-            # Make API call
-            try:
-                completion = client.chat.completions.create(
-                    model="gpt-4o-mini",
-                    messages=messages
-                )
+        # Make API call
+        try:
+            completion = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages
+            )
 
-                # Print response
-                print(completion.choices[0].message.content)
-                messages.append({"role": "assistant","content":completion.choices[0].message.content})
+            # Print response
+            print(completion.choices[0].message.content)
+            messages.append({"role": "assistant","content":completion.choices[0].message.content})
 
-            except Exception as e:
-                print(f"Error: {e}")
-                sys.exit(1)
+        except Exception as e:
+            print(f"Error: {e}")
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()
